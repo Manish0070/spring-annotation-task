@@ -1,17 +1,18 @@
 package com.stackroute;
-import com.stackroute.demo.BeanLifecycleDemoBean;
+
+import com.stackroute.demo.BeanPostProcessorDemoBean;
 import com.stackroute.domain.ConfigFile;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class Main
 {
     public static void main( String[] args )
     {
-        AnnotationConfigApplicationContext context=new AnnotationConfigApplicationContext(ConfigFile.class);
-        BeanLifecycleDemoBean demoBean=context.getBean("demobean",BeanLifecycleDemoBean.class);
-        demoBean.customDestroy();
-        demoBean.customInit();
-        demoBean.myMethod();
+        ConfigurableApplicationContext context=new AnnotationConfigApplicationContext(ConfigFile.class);
+        BeanPostProcessorDemoBean beanPostProcessorDemoBean = context.getBean("demobean",BeanPostProcessorDemoBean.class);
+        beanPostProcessorDemoBean.postProcessBeforeInitialization("demobean","manish");
+        beanPostProcessorDemoBean.postProcessAfterInitialization("demobean","Manish");
         context.close();
     }
 }
