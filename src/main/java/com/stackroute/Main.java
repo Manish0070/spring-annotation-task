@@ -11,9 +11,15 @@ public class Main
     public static void main( String[] args )
     {
         AnnotationConfigApplicationContext context=new AnnotationConfigApplicationContext(ConfigFile.class);
-        Movie movie =context.getBean(Movie.class);
-        Actor actor=context.getBean(Actor.class);
-        System.out.println(actor.toString());
-        System.out.println(movie.toString());
+        Movie movie1 =context.getBean("movie1",Movie.class);
+        Movie movie2 =context.getBean("movie2",Movie.class);
+        Actor actor1=context.getBean("actor1",Actor.class);
+        Actor actor2=context.getBean("actor2",Actor.class);
+        Actor actor3=context.getBean("actor3",Actor.class);
+        System.out.println(actor1.toString());
+        System.out.println(actor2.toString());
+        System.out.println(actor3.toString());
+        System.out.println(movie1.toString());
+        System.out.println(movie2.toString());
     }
 }
